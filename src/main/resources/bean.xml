@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 把对象的创建交给spring来管理 -->
+    <bean id="helloSpring" class="com.zjw.test.HelloSpring">
+        <property name="who" >
+            <value>Spring</value>
+        </property>
+    </bean>
+    <bean id="zhangsan" class="com.zjw.test.Greeting">
+        <property name="person">
+            <value>张三</value>
+        </property>
+        <property name="words">
+            <value>我是张三</value>
+        </property>
+    </bean>
+    <bean id="lisi" class="com.zjw.test.Greeting">
+        <property name="person">
+            <value>李四</value>
+        </property>
+        <property name="words">
+            <value>我是李四</value>
+        </property>
+    </bean>
+
+</beans>

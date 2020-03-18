@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userDao" class="com.zjw.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.zjw.service.impl.UserServiceImpl">
+        <property name="dao" ref="userDao"/>
+    </bean>
+    <bean id="theLogger" class="com.zjw.aop.UserServiceLogger"/>
+    <aop:config>
+        <aop:pointcut id="addNewUser" expression="execution(public void addNewUser(com.zjw.entity.User))"/>
+        <aop:aspect ref="theLogger">
+            <aop:before method="qianzhi" pointcut-ref="addNewUser"/>
+            <aop:after-returning method="houzhi" pointcut-ref="addNewUser" returning="result"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
